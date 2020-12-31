@@ -12,7 +12,7 @@ body {
 }
 
 svg {
-    width: 2572px;
+    width: (2450 / 100 / 2.54 * 267)px; /* (Keymap SVG's width / constant to convert to cm / constant converting to inches * your touchscreen device resolution in DPI) */
     height: auto;
     position: absolute;
     left: 50%;
