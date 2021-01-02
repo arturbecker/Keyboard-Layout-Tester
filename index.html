@@ -13,6 +13,7 @@
     <input type="number" min="0" max="1000" id="dpi">
     <button id="keymapButton">Load keymap.svg</button>
     <button id="keymapv2Button">Load keymap v2.svg</button>
+    <button id="keymapv3Button">Load keymap v3.svg</button>
     <p id="text">What you type will appear here: </p>
 </body>
 
@@ -86,6 +87,9 @@
     }
     document.getElementById('keymapv2Button').onclick = function () {
         loadKeymap("keymap_v2")
+    }
+    document.getElementById('keymapv3Button').onclick = function () {
+        loadKeymap("keymap_v3")
     }
 
     //p = document.getElementsByTagName("p")[0]
