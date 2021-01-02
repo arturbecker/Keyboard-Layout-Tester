@@ -9,6 +9,8 @@
 </head>
 
 <body oncontextmenu="return false">
+    <button id="keymapButton">Load keymap.svg</button>
+    <button id="keymapv2Button">Load keymap v2.svg</button>
     <p id="text">What you type will appear here: </p>
 </body>
 
@@ -24,10 +26,6 @@
         text.append(e.path[1].id)
         console.log(text.textContent.length)
     }
-
-    p = document.getElementsByTagName("p")[0]
-
-    console.log(p)
 
     function manipulateSvg() {
 
@@ -47,14 +45,35 @@
         keymap.onclick = appendCurrentKey
     }
 
-    var ajax = new XMLHttpRequest();
-    ajax.open("GET", "keymap.svg", true);
-    ajax.responseType = "document";
-    ajax.onload = function (e) {
-        document.body.insertBefore(ajax.responseXML.documentElement, p.nextSibling)
-        manipulateSvg()
+    function loadKeymap(keymapName) {
+
+        p = document.getElementsByTagName("p")[0]
+
+        if (document.getElementsByTagName("svg")) {
+            console.log('is svg')
+            svg = document.getElementsByTagName("svg")[0]
+            svg.remove()
+        }
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("GET", keymapName + ".svg", true);
+        ajax.responseType = "document";
+        ajax.onload = function (e) {
+            document.body.insertBefore(ajax.responseXML.documentElement, p.nextSibling)
+            manipulateSvg()
+        }
+        ajax.send();
     }
-    ajax.send();
+
+    document.getElementById('keymapButton').onclick = loadKeymap("keymap")
+    document.getElementById('keymapv2Button').onclick = loadKeymap("keymap_v2")
+
+    //p = document.getElementsByTagName("p")[0]
+
+    //p.onclick = loadKeymap();
+
+    //loadKeymap("keymap")
+
 </script>
 
 </html>
