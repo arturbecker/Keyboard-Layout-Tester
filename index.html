@@ -329,13 +329,20 @@
         console.log(text.textContent.length)
     }
 
+    svg = document.getElementsByTagName("svg")[0] // Selects the first svg
+
+    const dpi = 267 // Replace with your device DPI
+
+    const scale = window.devicePixelRatio
+    const figmaWidth = svg.getAttribute("width")
+    const width = figmaWidth / 100 / 2.54 * dpi * scale
+    console.log(width)
+    svg.setAttribute("width", width)
+    svg.setAttribute("height", "auto")
+
     text = document.getElementById("text")
     keymap = document.getElementById("keymap")
-    //console.log(keymap.id)
     keymap.onclick = appendCurrentKey
-
-    //text.append(this.id)
-    //console.log()
 </script>
 
 </html>
