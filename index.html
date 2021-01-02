@@ -9,12 +9,24 @@
 </head>
 
 <body oncontextmenu="return false">
+    <label for="dpi">Resolution of your display, in pixels per inch</label>
+    <input type="number" min="0" max="1000" id="dpi">
     <button id="keymapButton">Load keymap.svg</button>
     <button id="keymapv2Button">Load keymap v2.svg</button>
     <p id="text">What you type will appear here: </p>
 </body>
 
 <script>
+    let dpi = 100;
+
+    const input = document.getElementById('dpi');
+
+    input.addEventListener('input', updateValue);
+
+    function updateValue(e) {
+        dpi = e.target.value;
+    }
+
     function appendCurrentKey(e) {
         if (e.path[1].id == "keymap") {
             return
@@ -29,7 +41,7 @@
 
     function manipulateSvg() {
 
-        const dpi = 100 // Replace with your device DPI
+        //const dpi = 100 // Replace with your device DPI
 
         svg = document.getElementsByTagName("svg")[0]
 
@@ -41,7 +53,9 @@
         svg.setAttribute("height", "0")
 
         text = document.getElementById("text")
-        keymap = document.getElementById("keymap")
+        keymap = svg.getElementsByTagName("g")[0] // gets the first group, which should be the keymap
+        console.log(svg.getElementsByTagName("g")[0])
+        //keymap = document.getElementById("keymap")
         keymap.onclick = appendCurrentKey
     }
 
@@ -49,8 +63,10 @@
 
         p = document.getElementsByTagName("p")[0]
 
-        if (document.getElementsByTagName("svg")) {
-            console.log('is svg')
+        console.log(document.getElementsByTagName("svg").length)
+
+        if (document.getElementsByTagName("svg").length > 0) {
+            console.log('helo')
             svg = document.getElementsByTagName("svg")[0]
             svg.remove()
         }
@@ -65,8 +81,12 @@
         ajax.send();
     }
 
-    document.getElementById('keymapButton').onclick = loadKeymap("keymap")
-    document.getElementById('keymapv2Button').onclick = loadKeymap("keymap_v2")
+    document.getElementById('keymapButton').onclick = function () {
+        loadKeymap("keymap")
+    }
+    document.getElementById('keymapv2Button').onclick = function () {
+        loadKeymap("keymap_v2")
+    }
 
     //p = document.getElementsByTagName("p")[0]
 
