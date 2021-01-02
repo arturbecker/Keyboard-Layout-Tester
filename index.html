@@ -335,7 +335,7 @@
 
     const scale = window.devicePixelRatio
     const figmaWidth = svg.getAttribute("width")
-    const width = figmaWidth / 100 / 2.54 * dpi * scale
+    const width = figmaWidth / 100 / 2.54 * dpi / scale
     console.log(width)
     svg.setAttribute("width", width)
     svg.setAttribute("height", "auto")
