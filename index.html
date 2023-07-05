@@ -15,9 +15,33 @@
     <button id="keymapv2Button">Load keymap v2.svg</button>
     <button id="keymapv3Button">Load keymap v3.svg</button>
     <p id="text">What you type will appear here: </p>
+    <div class="frame">
+        <div class="div">
+          <div class="q">
+            <div class="text-wrapper">Q</div>
+          </div>
+          <div class="w">
+            <div class="text-wrapper-2">W</div>
+          </div>
+        </div>
+      </div>
 </body>
 
 <script>
+
+    // Testing divs from Anima (Figma plugin) output
+
+    function printKey(e) {
+        console.log(e)
+        console.log(e.srcElement.className)
+        text.append(e.srcElement.className)
+    }
+
+    divs = document.getElementsByTagName("div")
+    console.log(divs)
+
+    divs[2].onclick = printKey
+
     let dpi = 100;
 
     const input = document.getElementById('dpi');
@@ -29,6 +53,7 @@
     }
 
     function appendCurrentKey(e) {
+        console.log(e)
         if (e.path[1].id == "keymap") {
             return
         }
