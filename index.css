@@ -24,7 +24,7 @@ svg {
 /* Exported from Anima (Figma plugin) */
 
 .text-wrapper {
-    pointer-events: none /* So clicks on text are not printed */
+    pointer-events: none /* We need a way to select all text wrappers so clicks on text are not printed */
 }
 
 .frame {
