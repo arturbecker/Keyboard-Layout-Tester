@@ -15,16 +15,9 @@
     <button id="keymapv2Button">Load keymap v2.svg</button>
     <button id="keymapv3Button">Load keymap v3.svg</button>
     <p id="text">What you type will appear here: </p>
-    <div class="frame">
-        <div class="div">
-          <div class="q">
-            <div class="text-wrapper">Q</div>
-          </div>
-          <div class="w">
-            <div class="text-wrapper-2">W</div>
-          </div>
-        </div>
-      </div>
+    
+    
+
 </body>
 
 <script>
@@ -36,11 +29,6 @@
         console.log(e.srcElement.className)
         text.append(e.srcElement.className)
     }
-
-    divs = document.getElementsByTagName("div")
-    console.log(divs)
-
-    divs[2].onclick = printKey
 
     let dpi = 100;
 
@@ -54,14 +42,14 @@
 
     function appendCurrentKey(e) {
         console.log(e)
-        if (e.path[1].id == "keymap") {
-            return
-        }
+        //if (e.path[1].id == "keymap") {
+        //    return
+        //}
         //console.log(e.path)
         if (text.textContent.length > 70) {
             text.textContent = "What you type will appear here: "
         }
-        text.append(e.path[1].id)
+        text.append(e.target.id)
         console.log(text.textContent.length)
     }
 
@@ -82,7 +70,7 @@
         keymap = svg.getElementsByTagName("g")[0] // gets the first group, which should be the keymap
         console.log(svg.getElementsByTagName("g")[0])
         //keymap = document.getElementById("keymap")
-        keymap.onclick = appendCurrentKey
+        keymap.onmousedown = appendCurrentKey
     }
 
     function loadKeymap(keymapName) {
@@ -108,7 +96,7 @@
     }
 
     document.getElementById('keymapButton').onclick = function () {
-        loadKeymap("keymap")
+        loadKeymap("iPad_Air_5")
     }
     document.getElementById('keymapv2Button').onclick = function () {
         loadKeymap("keymap_v2")
@@ -116,12 +104,6 @@
     document.getElementById('keymapv3Button').onclick = function () {
         loadKeymap("keymap_v3")
     }
-
-    //p = document.getElementsByTagName("p")[0]
-
-    //p.onclick = loadKeymap();
-
-    //loadKeymap("keymap")
 
 </script>
 
