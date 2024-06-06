@@ -24,3 +24,7 @@ svg {
 body :not(svg, g, rect, input, button, #hand, #iPad_Air_5) {
   pointer-events: none;
 }
+
+body {
+    touch-action: none;
+}
